@@ -26,9 +26,22 @@ pub enum Commands {
 
         #[arg(short = 'n', long, default_value = "0")]
         count: usize,
+
+        /// BPF filter expression (e.g., "tcp port 80")
+        #[arg(short, long)]
+        filter: Option<String>,
+
+        /// Output file to save captured packets (in pcap format)
+        #[arg(short, long)]
+        output_file: Option<String>,
+
+        /// Analyze packets in real-time during capture
+        #[arg(short, long)]
+        realtime_analysis: bool,
     },
 
     Analyze {
-        packet: String,
+        /// Path to a pcap file or raw packet data file
+        packet_file: String,
     },
 }
